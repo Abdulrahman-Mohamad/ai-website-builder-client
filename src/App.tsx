@@ -7,12 +7,10 @@ import Projects from "./pages/Projects"
 import { View } from "lucide-react"
 import Community from "./pages/Community"
 import Navbar from "./components/Navbar"
-import Loading from "./components/Loading"
 
 const App = () => {
   return (
     <div>
-
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -23,7 +21,6 @@ const App = () => {
         <Route path="/preview/:projectId/:versionId" element={<Preview />} />
         <Route path="/community" element={<Community />} />
         <Route path="/view/:projectId" element={<View />} />
-
       </Routes>
     </div>
   )
