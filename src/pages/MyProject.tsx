@@ -46,7 +46,7 @@ const MyProject = () => {
                                 <div
                                     onClick={() => navigate(`/projects/${project.id}`)}
                                     key={project.id}
-                                    className="relative group w-72 max-sm:mx-auto cursor-pointer bg-gray-900/60 border border-gray-700 rounded-lg overflow-hidden shadow-md group hover:border-indigo-800/80 transition-all duration-300">
+                                    className="relative group w-72 max-sm:mx-auto cursor-pointer bg-gray-900/60 border border-gray-700 rounded-lg overflow-hidden shadow-md group hover:shadow-indigo-700/30 hover:border-indigo-800/80 transition-all duration-300">
                                     {/*  Desktop-like Mini Preview*/}
                                     <div className="relative w-full h-40 bg-gray-900 overflow-hidden border-b border-gray-800">
                                         {project.current_code ? (
