@@ -3,7 +3,7 @@ const Preview = () => {
         <div>
             <h1>
                 Preview Page
-            </h1>
+            </h1> 
         </div>
     )
 }
