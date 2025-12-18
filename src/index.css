@@ -11,3 +11,7 @@
     @apply cursor-pointer
   }
 }
+
+.flex-center{
+  @apply flex justify-center items-center
+}
