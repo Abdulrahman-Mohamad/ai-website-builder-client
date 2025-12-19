@@ -9,8 +9,7 @@ export interface User {
 
 export interface Message {
     id: string;
-    // role must be type "any" so I put it like this right now but I will change it later
-    role: 'user' | 'assistant' | 'system';
+    role: any;
     content: string;
     timestamp: string;
 }

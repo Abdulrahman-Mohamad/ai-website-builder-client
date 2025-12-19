@@ -7,11 +7,16 @@ import Projects from "./pages/Projects"
 import { View } from "lucide-react"
 import Community from "./pages/Community"
 import Navbar from "./components/Navbar"
+import { useLocation } from "react-router-dom"
 
 const App = () => {
+  const { pathname } = useLocation()
+  const hideNavbar = pathname.startsWith('/projects/') && pathname !== '/projects'
+                      || pathname.startsWith('/view/')
+                      || pathname.startsWith('/preview/')
   return (
     <div>
-      <Navbar />
+      {!hideNavbar && <Navbar />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/pricing" element={<Pricing />} />
