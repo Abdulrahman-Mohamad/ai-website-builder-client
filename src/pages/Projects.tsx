@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Link, useNavigate, useParams } from "react-router-dom"
 import type { Project } from "../types"
 import Loading from "../components/Loading"
 import { dummyConversations, dummyProjects, dummyVersion } from "../assets/assets"
 import { ArrowBigDownDashIcon, EyeIcon, EyeOffIcon, FullscreenIcon, LaptopIcon, Loader2Icon, MessageSquareIcon, SaveIcon, SmartphoneIcon, TabletIcon, XIcon } from "lucide-react"
 import Sidebar from "../components/Sidebar"
+import ProjectPreview, { type ProjectPreviewRef } from "../components/ProjectPreview"
 
 const Projects = () => {
 
@@ -19,6 +20,8 @@ const Projects = () => {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isSaving, setIsSaving] = useState(false)
+
+  const previewRef = useRef<ProjectPreviewRef>(null)
 
 
   const fetchProject = async () => {
@@ -121,7 +124,12 @@ const Projects = () => {
           />
         </div>
         <div className="flex-1 p-2 ps-0">
-          Project Preview
+          <ProjectPreview
+            ref={previewRef}
+            project={project}
+            isGenerating={isGenerating}
+            device={device}
+          />
         </div>
       </div>
     </div>
