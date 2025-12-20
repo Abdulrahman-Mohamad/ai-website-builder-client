@@ -15,7 +15,7 @@ const App = () => {
                       || pathname.startsWith('/view/')
                       || pathname.startsWith('/preview/')
   return (
-    <div>
+    <div className="py-10 lg:py-14">
       {!hideNavbar && <Navbar />}
       <Routes>
         <Route path="/" element={<Home />} />

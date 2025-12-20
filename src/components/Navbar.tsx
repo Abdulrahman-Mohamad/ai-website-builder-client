@@ -1,14 +1,15 @@
 import React from 'react'
 import { assets } from '../assets/assets';
 import { Link, useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = React.useState(false);
   const navigate = useNavigate()
 
   return (
-    <> 
-      <nav className="z-50 flex items-center justify-between w-full py-4 px-4 md:px-16 lg:px-24 xl:px-32 backdrop-blur border-b text-white border-slate-800">
+    <>
+      <nav className="fixed top-0 right-0 left-0 z-50 flex items-center justify-between w-full py-4 px-4 md:px-16 lg:px-24 xl:px-32 backdrop-blur border-b text-white border-slate-800">
         <Link to="/" className='flex items-center gap-2'>
           <img src={assets.logo} alt="logo" className='h-4 sm:h-5' />
           <h2 className='text-sm font-semibold'>Infinity Builder</h2>
@@ -35,16 +36,21 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="fixed inset-0 z-50 bg-black/60 text-white backdrop-blur flex flex-col items-center justify-center text-lg gap-8 md:hidden transition-transform duration-300">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+          className="fixed inset-0 z-50 bg-black/60 text-white backdrop-blur flex flex-col items-center justify-center text-lg gap-8 md:hidden transition-transform duration-300">
           <Link to='/' onClick={() => setMenuOpen(false)}>Home</Link>
           <Link to='/projects' onClick={() => setMenuOpen(false)}>My Projects</Link>
           <Link to='/community' onClick={() => setMenuOpen(false)}>Community</Link>
           <Link to='/pricing' onClick={() => setMenuOpen(false)}>Pricing</Link>
 
-          <button className="active:ring-3 active:ring-white aspect-square size-10 p-1 items-center justify-center bg-slate-100 hover:bg-slate-200 transition text-black rounded-md flex" onClick={() => setMenuOpen(false)} >
+          <button className="absolute top-10 right-10 active:ring-3 active:ring-white aspect-square size-10 p-1 items-center justify-center bg-slate-100 hover:bg-slate-200 transition text-black rounded-md flex" onClick={() => setMenuOpen(false)} >
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
           </button>
-        </div>
+        </motion.div>
       )}
 
       {/* BACKGROUND IMAGE */}
