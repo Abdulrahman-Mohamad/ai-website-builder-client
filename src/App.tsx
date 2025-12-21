@@ -8,14 +8,17 @@ import Community from "./pages/Community"
 import Navbar from "./components/Navbar"
 import { useLocation } from "react-router-dom"
 import View from "./pages/View"
+import { Toaster } from 'sonner'
+import AuthPage from "./pages/auth/AuthPage"
 
 const App = () => {
   const { pathname } = useLocation()
   const hideNavbar = pathname.startsWith('/projects/') && pathname !== '/projects'
-                      || pathname.startsWith('/view/')
-                      || pathname.startsWith('/preview/')
+    || pathname.startsWith('/view/')
+    || pathname.startsWith('/preview/')
   return (
     <div className="py-10 lg:py-14">
+      <Toaster />
       {!hideNavbar && <Navbar />}
       <Routes>
         <Route path="/" element={<Home />} />
@@ -26,6 +29,7 @@ const App = () => {
         <Route path="/preview/:projectId/:versionId" element={<Preview />} />
         <Route path="/community" element={<Community />} />
         <Route path="/view/:projectId" element={<View />} />
+        <Route path="/auth/:pathname" element={<AuthPage />} />
       </Routes>
     </div>
   )
