@@ -20,7 +20,7 @@ const App = () => {
   return (
     <div>
       <Toaster/>
-      {!hideNavbar && <Navbar />}
+      {!hideNavbar && <Navbar/>}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/pricing" element={<Pricing />} />
