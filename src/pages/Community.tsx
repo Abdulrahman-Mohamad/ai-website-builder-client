@@ -14,10 +14,10 @@ const Community = () => {
 
   const fetchProjects = async () => {
     try {
-      const {data} = await api.get('api/project/published')
+      const { data } = await api.get('api/project/published')
       setProjects(data.projects)
       setLoading(false)
-    } catch (error:any) {
+    } catch (error: any) {
       console.log(error)
       toast.error(error?.response?.data?.message || error.message)
     }
@@ -37,13 +37,13 @@ const Community = () => {
             <div className="flex items-center justify-between mb-12">
               <h1 className="text-2xl font-medium text-white">Published Projects</h1>
             </div>
-            <div className="flex flex-wrap gap-3.5">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
               {projects.map((project) => (
                 <Link
                   to={`/view/${project.id}`}
                   target="_blank"
                   key={project.id}
-                  className=" w-72 max-sm:mx-auto cursor-pointer bg-gray-900/60 border border-gray-700 rounded-lg overflow-hidden group hover:border-indigo-800/80 transition-all duration-300">
+                  className="max-sm:mx-auto cursor-pointer bg-gray-900/60 border border-gray-700 rounded-lg overflow-hidden group hover:border-indigo-800/80 transition-all duration-300">
                   {/*  Desktop-like Mini Preview*/}
                   <div className="relative w-full h-40 bg-gray-900 overflow-hidden border-b border-gray-800">
                     {project.current_code ? (

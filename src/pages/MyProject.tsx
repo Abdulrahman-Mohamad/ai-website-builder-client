@@ -64,12 +64,12 @@ const MyProject = () => {
                 onClick={() => navigate('/')}
                 className="flex items-center gap-2 text-white px-3 sm:px-6 py-1 sm:py-2 rounded bg-linear-to-br from-indigo-500 to-indigo-600 hover:opacity-90 active:scale-95 transition-all"><PlusIcon size={18} /> Create New</button>
             </div>
-            <div className="flex flex-wrap gap-3.5">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
               {projects.map((project) => (
                 <div
                   onClick={() => navigate(`/projects/${project.id}`)}
                   key={project.id}
-                  className="relative group w-72 max-sm:mx-auto cursor-pointer bg-gray-900/60 border border-gray-700 rounded-lg overflow-hidden shadow-md group hover:shadow-indigo-700/30 hover:border-indigo-800/80 transition-all duration-300">
+                  className="relative group max-sm:mx-auto cursor-pointer bg-gray-900/60 border border-gray-700 rounded-lg overflow-hidden shadow-md group hover:shadow-indigo-700/30 hover:border-indigo-800/80 transition-all duration-300">
                   {/*  Desktop-like Mini Preview*/}
                   <div className="relative w-full h-40 bg-gray-900 overflow-hidden border-b border-gray-800">
                     {project.current_code ? (
