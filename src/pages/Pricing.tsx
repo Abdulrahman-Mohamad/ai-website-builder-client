@@ -17,7 +17,8 @@ const Pricing = () => {
   const [plans] = useState<Plan[]>(appPlans)
 
   const handlePurchase = async (planId: string) => {
-    
+    return console.log(planId);
+
   }
   return (
     <>
