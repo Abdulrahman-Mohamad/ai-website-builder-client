@@ -21,7 +21,7 @@ const Pricing = () => {
     }
     return (
         <>
-            <div className="w-full max-w-5xl mx-auto z-20 max-md:px-4 min-h-[80vh]">
+            <div className="w-full max-w-5xl mx-auto z-20 max-md:px-4 min-h-[80vh] pt-10 lg:pt-14">
                 <div className="text-center mt-16">
                     <h2 className="text-gray-100 text-3xl font-medium">Choose Ypur Plan</h2>
                     <p className="text-gray-400 text-sm max-w-md mx-auto mt-2">Start for free and scale up as you grow. Find the perfect plan for your content creation needs.</p>

@@ -132,6 +132,7 @@ const Sidebar = ({ isMenuOpen, project, setProject, isGenerating, setIsGeneratin
                         )}
                       <Link
                         to={`/preview/${project?.id}/${ver.id}`}
+                        target="_blank"
                       >
                         <EyeIcon className="size-6 p-1 bg-gray-700 hover:bg-indigo-500 transition-colors rounded" />
                       </Link>

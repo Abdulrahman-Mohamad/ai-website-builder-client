@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import api from "@/configs/axios";
 import { authClient } from "@/lib/auth-client";
 import { Loader2Icon } from "lucide-react";
@@ -34,9 +35,9 @@ const Home = () => {
     }
   }
 
-  return (
+  return (<>
 
-    <section className="flex flex-col items-center text-white text-sm pb-20 px-4 font-poppins">
+    <section className="flex flex-col items-center text-white text-sm pb-20 px-4 font-poppins pt-10 lg:pt-14">
 
       <a href="https://prebuiltui.com" className="flex items-center gap-2 border border-slate-700 rounded-full p-1 pr-3 text-sm mt-20">
         <span className="bg-indigo-600 text-xs px-3 py-1 rounded-full">NEW</span>
@@ -73,6 +74,8 @@ const Home = () => {
         <img className="max-w-28 md:max-w-32" src="https://saasly.prebuiltui.com/assets/companies-logo/walmart.svg" alt="" />
       </div>
     </section>
+    <Footer />
+  </>
   )
 }
 
