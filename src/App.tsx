@@ -18,7 +18,7 @@ const App = () => {
     || pathname.startsWith('/view/')
     || pathname.startsWith('/preview/')
   return (
-    <div className="py-10 lg:py-14">
+    <div>
       <Toaster />
       {!hideNavbar && <Navbar />}
       <Routes>

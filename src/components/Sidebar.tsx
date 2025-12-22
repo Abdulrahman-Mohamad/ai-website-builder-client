@@ -2,6 +2,8 @@ import { BotIcon, EyeIcon, Loader2Icon, SendIcon, UserIcon } from "lucide-react"
 import type { Message, Project, Version } from "../types"
 import { Link } from "react-router-dom"
 import { useEffect, useRef, useState } from "react"
+import api from "@/configs/axios"
+import { toast } from "sonner"
 
 interface SidebarProps {
   isMenuOpen: boolean
@@ -17,16 +19,53 @@ const Sidebar = ({ isMenuOpen, project, setProject, isGenerating, setIsGeneratin
 
   const messageRef = useRef<HTMLDivElement>(null);
 
-  const handleRollback = async (versionId: string) => {
+  const fetchProject = async () => {
+    try {
+      const { data } = await api.get(`/api/user/project/${project?.id}`)
+      setProject(data.project)
+    } catch (error: any) {
+      toast.error(error?.response?.data?.message || error.message)
+      console.log(error);
 
+    }
+  }
+
+  const handleRollback = async (versionId: string) => {
+    try {
+      const confirm = window.confirm('Are you sure you want to rollback to this version?')
+      if (!confirm) return;
+      setIsGenerating(true)
+      const { data } = await api.get(`/api/project/rollback/${project?.id}/${versionId}`)
+      const { data: data2 } = await api.get(`/api/user/project/${project?.id}`)
+      toast.success(data.message)
+      setProject(data2.project)
+      setIsGenerating(false)
+    } catch (error: any) {
+      setIsGenerating(false)
+      toast.error(error?.response?.data?.message || error.message)
+      console.log(error);
+    }
   }
 
   const handleRevisions = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsGenerating(true)
-    setTimeout(() => {
+    let interval: number | undefined;
+    try {
+      setIsGenerating(true)
+      interval = setInterval(() => {
+        fetchProject();
+      }, 10000)
+      const { data } = await api.post(`/api/project/revision/${project?.id}`, { message: input })
+      fetchProject();
+      toast.success(data.message)
+      setInput('')
+      clearInterval(interval)
       setIsGenerating(false)
-    }, 3000)
+    } catch (error: any) {
+      setIsGenerating(false)
+      toast.error(error?.response?.data?.message || error.message)
+      clearInterval(interval)
+    }
   }
   useEffect(() => {
     if (messageRef.current) {
@@ -109,9 +148,9 @@ const Sidebar = ({ isMenuOpen, project, setProject, isGenerating, setIsGeneratin
                 </div>
                 {/* three dot loader */}
                 <div className="flex gap-1.5 h-full items-end">
-                  <span style={{animationDelay: '0s'}} className="size-2 rounded-full animate-bounce bg-gray-600"/>
-                  <span style={{animationDelay: '0.2s'}} className="size-2 rounded-full animate-bounce bg-gray-600"/>
-                  <span style={{animationDelay: '0.4s'}} className="size-2 rounded-full animate-bounce bg-gray-600"/>
+                  <span style={{ animationDelay: '0s' }} className="size-2 rounded-full animate-bounce bg-gray-600" />
+                  <span style={{ animationDelay: '0.2s' }} className="size-2 rounded-full animate-bounce bg-gray-600" />
+                  <span style={{ animationDelay: '0.4s' }} className="size-2 rounded-full animate-bounce bg-gray-600" />
                 </div>
               </div>
             )
