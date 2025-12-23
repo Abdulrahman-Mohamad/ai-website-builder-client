@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { appPlans } from "../assets/assets";
 import Footer from "../components/Footer";
+import { useNavigate } from "react-router-dom";
 
 interface Plan {
   id: string;
@@ -14,12 +15,13 @@ interface Plan {
 
 const Pricing = () => {
 
+  const navigate = useNavigate()
+
   const [plans] = useState<Plan[]>(appPlans)
 
-  const handlePurchase = async (planId: string) => {
-    return console.log(planId);
+  // const handlePurchase = async (planId: string) => {
 
-  }
+  // }
   return (
     <>
       <div className="w-full max-w-5xl mx-auto z-20 max-md:px-4 min-h-[80vh] pt-10 lg:pt-14">
@@ -50,7 +52,7 @@ const Pricing = () => {
                     </li>
                   ))}
                 </ul>
-                <button onClick={() => handlePurchase(plan.id)} className="w-full py-2 px-4 bg-indigo-500 hover:bg-indigo-600 active:scale-95 text-sm rounded-md transition-all">
+                <button onClick={() => navigate("/checkout")} className="w-full py-2 px-4 bg-indigo-500 hover:bg-indigo-600 active:scale-95 text-sm rounded-md transition-all">
                   Buy Now
                 </button>
               </div>

@@ -11,6 +11,7 @@ import View from "./pages/View"
 import { Toaster } from 'sonner'
 import AuthPage from "./pages/auth/AuthPage"
 import Settings from "./pages/Settings"
+import Checkout from "./pages/Checkout"
 
 const App = () => {
   const { pathname } = useLocation()
@@ -19,8 +20,8 @@ const App = () => {
     || pathname.startsWith('/preview/')
   return (
     <div>
-      <Toaster/>
-      {!hideNavbar && <Navbar/>}
+      <Toaster />
+      {!hideNavbar && <Navbar />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/pricing" element={<Pricing />} />
@@ -32,6 +33,7 @@ const App = () => {
         <Route path="/view/:projectId" element={<View />} />
         <Route path="/auth/:pathname" element={<AuthPage />} />
         <Route path="/account/settings" element={<Settings />} />
+        <Route path="/checkout" element={<Checkout />} />
       </Routes>
     </div>
   )
